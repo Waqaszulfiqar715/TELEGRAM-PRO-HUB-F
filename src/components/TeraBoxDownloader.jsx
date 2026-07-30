@@ -158,11 +158,24 @@ export default function TeraBoxDownloader() {
                 target="_blank"
                 rel="noreferrer"
                 className="btn-primary" 
-                style={{ padding: '12px 24px', textDecoration: 'none' }}
+                style={{ padding: '12px 24px', textDecoration: 'none', background: 'linear-gradient(135deg, #00f2fe 0%, #4facfe 100%)', color: '#000', fontWeight: 700 }}
               >
                 <Download size={20} />
-                <span>Download TeraBox Video</span>
+                <span>⚡ Download Server 1 (Fast)</span>
               </a>
+
+              {fileInfo.backup_url && (
+                <a 
+                  href={fileInfo.backup_url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-primary" 
+                  style={{ padding: '12px 20px', textDecoration: 'none', background: 'rgba(255, 255, 255, 0.12)', border: '1px solid var(--border-glass)' }}
+                >
+                  <ExternalLink size={18} />
+                  <span>🌐 Mirror Server 2</span>
+                </a>
+              )}
             </div>
 
           </div>
