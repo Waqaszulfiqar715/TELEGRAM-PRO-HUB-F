@@ -53,7 +53,11 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
       }
       setStep('code');
     } catch (err) {
-      setError(err.message);
+      if (err.message.includes('json') || err.message.includes('JSON') || err.message.includes('fetch')) {
+        setError('❌ Backend Server start nahi hai! Pehly terminal me Python Backend chalayen (uvicorn main:app --port 8000) ya Render server URL verify karein.');
+      } else {
+        setError(err.message);
+      }
     } finally {
       setLoading(false);
     }
@@ -81,7 +85,11 @@ export default function AuthModal({ isOpen, onClose, onAuthSuccess }) {
       onAuthSuccess(data.user);
       onClose();
     } catch (err) {
-      setError(err.message);
+      if (err.message.includes('json') || err.message.includes('JSON') || err.message.includes('fetch')) {
+        setError('❌ Backend Server start nahi hai! Pehly terminal me Python Backend chalayen (uvicorn main:app --port 8000) ya Render server URL verify karein.');
+      } else {
+        setError(err.message);
+      }
     } finally {
       setLoading(false);
     }
