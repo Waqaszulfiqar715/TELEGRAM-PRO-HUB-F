@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import DownloaderTab from './components/DownloaderTab';
+import TeraBoxDownloader from './components/TeraBoxDownloader';
 import AudioExtractor from './components/AudioExtractor';
 import TextCopier from './components/TextCopier';
 import ChannelInspector from './components/ChannelInspector';
 import UserGuide from './components/UserGuide';
 import AuthModal from './components/AuthModal';
 import Footer from './components/Footer';
-import { Download, Search, Shield, HelpCircle, Headphones, FileText } from 'lucide-react';
+import { Download, Search, Shield, HelpCircle, Headphones, FileText, HardDrive } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('downloader'); // downloader | audio | text | inspector | guide
+  const [activeTab, setActiveTab] = useState('downloader'); // downloader | terabox | audio | text | inspector | guide
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const [authStatus, setAuthStatus] = useState({ authenticated: false, user: null });
 
@@ -32,6 +33,7 @@ export default function App() {
 
   const tabs = [
     { id: 'downloader', label: '📥 Video Downloader', icon: Download },
+    { id: 'terabox', label: '📦 TeraBox Downloader', icon: HardDrive },
     { id: 'audio', label: '🎧 Audio & Voice Hub', icon: Headphones },
     { id: 'text', label: '📝 Text & Caption Copier', icon: FileText },
     { id: 'inspector', label: '🔍 Channel Inspector', icon: Search },
@@ -82,6 +84,7 @@ export default function App() {
       {/* Main Content Area */}
       <main>
         {activeTab === 'downloader' && <DownloaderTab />}
+        {activeTab === 'terabox' && <TeraBoxDownloader />}
         {activeTab === 'audio' && <AudioExtractor />}
         {activeTab === 'text' && <TextCopier />}
         {activeTab === 'inspector' && <ChannelInspector />}
