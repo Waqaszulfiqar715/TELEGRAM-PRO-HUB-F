@@ -33,7 +33,7 @@ export default function App() {
 
   const tabs = [
     { id: 'downloader', label: '📥 Video Downloader', icon: Download },
-    { id: 'terabox', label: '📦 TeraBox Downloader', icon: HardDrive },
+    { id: 'terabox', label: '📦 TeraBox & DiskWala Hub', icon: HardDrive },
     { id: 'audio', label: '🎧 Audio & Voice Hub', icon: Headphones },
     { id: 'text', label: '📝 Text & Caption Copier', icon: FileText },
     { id: 'inspector', label: '🔍 Channel Inspector', icon: Search },

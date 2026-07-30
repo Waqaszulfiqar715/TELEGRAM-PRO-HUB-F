@@ -54,10 +54,10 @@ export default function TeraBoxDownloader() {
       <div className="glass-card" style={{ padding: '28px', marginBottom: '24px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
           <HardDrive size={24} color="var(--text-accent)" />
-          <h2 style={{ fontSize: '1.3rem' }}>📦 TeraBox Cloud Player & Downloader</h2>
+          <h2 style={{ fontSize: '1.3rem' }}>📦 TeraBox & DiskWala Cloud Player</h2>
         </div>
         <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '20px' }}>
-          Paste any TeraBox share link (terasharefile.com, terabox.com, 1024tera.com, etc.) to <strong>watch videos directly inside this app</strong> or generate instant download links!
+          Paste any TeraBox or DiskWala share link (terabox.com, diskwala.com, thediskwala.com, etc.) to <strong>watch videos directly inside this app</strong> or generate instant download links!
         </p>
 
         <form onSubmit={handleInspect} style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
@@ -65,7 +65,7 @@ export default function TeraBoxDownloader() {
             <input
               type="text"
               className="input-field"
-              placeholder="https://terasharefile.com/s/1xxxx or https://terabox.com/s/..."
+              placeholder="https://terasharefile.com/s/1xxxx or https://diskwala.com/s/..."
               value={url}
               onChange={(e) => setUrl(e.target.value)}
             />
