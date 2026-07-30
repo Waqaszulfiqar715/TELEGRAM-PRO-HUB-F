@@ -55,7 +55,7 @@ export default function TeraBoxDownloader() {
           <h2 style={{ fontSize: '1.3rem' }}>📦 TeraBox Cloud Downloader</h2>
         </div>
         <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '20px' }}>
-          Paste any TeraBox share link (terabox.com, 1024tera.com, teraboxapp.com, etc.) to generate instant high-speed direct download links without ads!
+          Paste any TeraBox share link (terasharefile.com, terabox.com, 1024tera.com, etc.) to generate instant high-speed direct download links without ads!
         </p>
 
         <form onSubmit={handleInspect} style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
@@ -63,7 +63,7 @@ export default function TeraBoxDownloader() {
             <input
               type="text"
               className="input-field"
-              placeholder="https://terabox.com/s/1xxxx or https://1024tera.com/s/..."
+              placeholder="https://terasharefile.com/s/1xxxx or https://terabox.com/s/..."
               value={url}
               onChange={(e) => setUrl(e.target.value)}
             />
