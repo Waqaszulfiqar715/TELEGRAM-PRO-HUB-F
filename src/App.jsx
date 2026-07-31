@@ -31,6 +31,16 @@ export default function App() {
     }
   };
 
+  const handleDisconnect = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' });
+    } catch (err) {
+      console.log('Error logging out:', err);
+    } finally {
+      setAuthStatus({ authenticated: false, user: null });
+    }
+  };
+
   const tabs = [
     { id: 'downloader', label: '📥 Video Downloader', icon: Download },
     { id: 'terabox', label: '📦 TeraBox & DiskWala Hub', icon: HardDrive },
@@ -44,17 +54,18 @@ export default function App() {
     <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 20px' }}>
       <Header 
         authStatus={authStatus} 
-        onOpenAuth={() => setAuthModalOpen(true)} 
+        onOpenAuth={() => setAuthModalOpen(true)}
+        onLogout={handleDisconnect}
       />
 
-      {/* Navigation Tabs */}
+      {/* Navigation Tabs (Multi-line wrap without scrollbar) */}
       <div style={{
         display: 'flex',
-        gap: '12px',
+        flexWrap: 'wrap',
+        gap: '10px',
         marginBottom: '28px',
         borderBottom: '1px solid var(--border-glass)',
-        paddingBottom: '16px',
-        overflowX: 'auto'
+        paddingBottom: '16px'
       }}>
         {tabs.map((tab) => (
           <button
@@ -65,15 +76,14 @@ export default function App() {
               color: activeTab === tab.id ? 'var(--text-accent)' : 'var(--text-muted)',
               border: activeTab === tab.id ? '1px solid var(--text-accent)' : '1px solid transparent',
               borderRadius: '12px',
-              padding: '10px 20px',
-              fontSize: '0.95rem',
+              padding: '10px 18px',
+              fontSize: '0.92rem',
               fontWeight: activeTab === tab.id ? 700 : 500,
               cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               gap: '8px',
-              transition: 'all 0.2s ease',
-              whiteSpace: 'nowrap'
+              transition: 'all 0.2s ease'
             }}
           >
             <span>{tab.label}</span>
