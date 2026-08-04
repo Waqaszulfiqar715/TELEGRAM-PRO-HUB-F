@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HardDrive, Search, Download, ExternalLink, Copy, Check, AlertTriangle, Play, Film, Monitor } from 'lucide-react';
+import { HardDrive, Search, Download, ExternalLink, Copy, Check, AlertTriangle, Film } from 'lucide-react';
 
 export default function TeraBoxDownloader() {
   const [url, setUrl] = useState('');
@@ -7,7 +7,6 @@ export default function TeraBoxDownloader() {
   const [fileInfo, setFileInfo] = useState(null);
   const [error, setError] = useState('');
   const [copied, setCopied] = useState(false);
-  const [playerMode, setPlayerMode] = useState('embed'); // embed | mirror | none
 
   const handleInspect = async (e) => {
     e.preventDefault();
@@ -28,7 +27,6 @@ export default function TeraBoxDownloader() {
         throw new Error(data.detail || data.error || 'Could not resolve TeraBox link');
       }
       setFileInfo(data);
-      setPlayerMode('embed');
     } catch (err) {
       if (err.message.includes('json') || err.message.includes('JSON') || err.message.includes('fetch')) {
         setError('❌ Backend Server offline hai! Pehly Python Backend chalayen ya Render server URL verify karein.');
@@ -54,10 +52,10 @@ export default function TeraBoxDownloader() {
       <div className="glass-card" style={{ padding: '28px', marginBottom: '24px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
           <HardDrive size={24} color="var(--text-accent)" />
-          <h2 style={{ fontSize: '1.3rem' }}>📦 TeraBox & DiskWala Cloud Player</h2>
+          <h2 style={{ fontSize: '1.3rem' }}>📦 TeraBox & DiskWala Cloud Downloader</h2>
         </div>
         <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '20px' }}>
-          Paste any TeraBox or DiskWala share link (terabox.com, diskwala.com, thediskwala.com, etc.) to <strong>watch videos directly inside this app</strong> or generate instant download links!
+          Paste any TeraBox or DiskWala share link (terabox.com, diskwala.com, thediskwala.com, etc.) to <strong>generate instant high-speed download links</strong>!
         </p>
 
         <form onSubmit={handleInspect} style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
@@ -139,71 +137,12 @@ export default function TeraBoxDownloader() {
                 )}
               </div>
             </div>
-
-            {/* Player Switcher Pills */}
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              <button
-                onClick={() => setPlayerMode('embed')}
-                className="btn-primary"
-                style={{
-                  padding: '8px 16px',
-                  background: playerMode === 'embed' ? 'rgba(0, 242, 254, 0.25)' : 'rgba(255, 255, 255, 0.05)',
-                  border: playerMode === 'embed' ? '1px solid var(--text-accent)' : '1px solid var(--border-glass)',
-                  color: 'var(--text-main)',
-                  fontSize: '0.85rem'
-                }}
-              >
-                <Play size={16} />
-                <span>🎬 Play in App (Player 1)</span>
-              </button>
-
-              <button
-                onClick={() => setPlayerMode('mirror')}
-                className="btn-primary"
-                style={{
-                  padding: '8px 16px',
-                  background: playerMode === 'mirror' ? 'rgba(0, 242, 254, 0.25)' : 'rgba(255, 255, 255, 0.05)',
-                  border: playerMode === 'mirror' ? '1px solid var(--text-accent)' : '1px solid var(--border-glass)',
-                  color: 'var(--text-main)',
-                  fontSize: '0.85rem'
-                }}
-              >
-                <Monitor size={16} />
-                <span>⚡ Play in App (Player 2)</span>
-              </button>
-            </div>
           </div>
-
-          {/* Direct In-App Video Player iframe */}
-          {playerMode !== 'none' && (
-            <div style={{
-              width: '100%',
-              borderRadius: '16px',
-              overflow: 'hidden',
-              border: '1px solid var(--border-glow)',
-              background: '#000',
-              marginBottom: '24px',
-              position: 'relative'
-            }}>
-              <iframe
-                src={playerMode === 'embed' ? fileInfo.embed_url : fileInfo.player_url}
-                title="TeraBox In-App Player"
-                style={{
-                  width: '100%',
-                  height: '420px',
-                  border: 'none',
-                  display: 'block'
-                }}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-                allowFullScreen
-              />
-            </div>
-          )}
 
           {/* Download Action Buttons */}
           <div>
             <h4 style={{ fontSize: '0.95rem', color: 'var(--text-muted)', marginBottom: '12px' }}>
-              📥 Want to save the file Offline? Choose a Fast Download Server:
+              📥 Choose a Fast Download Server to get your file:
             </h4>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
               <a 
